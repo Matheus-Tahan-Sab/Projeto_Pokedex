@@ -97,7 +97,7 @@ export default function App() {
     setFavoritesOnly(false);
   }
   return (
-    <div className="app-shell">
+    <div className={`app-shell ${page === "battle" ? "battle-page" : ""}`}>
       <a className="skip-link" href="#conteudo">
         Pular para o conteúdo
       </a>

@@ -13,11 +13,16 @@ import { chooseBotAction, hpRatio } from "./bot.js";
 const difficulties = ["easy", "medium", "hard"];
 export class BattleSession {
   constructor(
-    { trainerId, team, opponentId, difficulty = "medium" },
+    { trainerId, team, opponentId, difficulty = "medium", playerName = "" },
     { seed, random } = {},
   ) {
     if (!difficulties.includes(difficulty))
       throw new Error("Dificuldade inválida.");
+    if (typeof playerName !== "string")
+      throw new Error("Nome de desafiante inválido.");
+    const challenger = playerName.trim();
+    if (challenger.length > 24 || (challenger && !/^[\p{L}\p{M}\p{N} ._'’-]+$/u.test(challenger)))
+      throw new Error("Use até 24 caracteres no nome: letras, números, espaços, ponto, hífen ou apóstrofo.");
     const own = trainerId
       ? trainerTeam(trainerId)
       : { name: "Seu time", team: validateCustomTeam(team) };
@@ -25,7 +30,7 @@ export class BattleSession {
     this.id = randomUUID();
     this.difficulty = difficulty;
     this.random = random;
-    this.names = { p1: `${own.name} (você)`, p2: `${opponent.name} (bot)` };
+    this.names = { p1: `${challenger || own.name} (você)`, p2: `${opponent.name} (bot)` };
     this.turn = 0;
     this.version = 0;
     this.logs = [];

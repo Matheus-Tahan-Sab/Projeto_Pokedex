@@ -69,6 +69,15 @@ Abra a aba **Batalhas** com `npm run dev` em execução. O mesmo comando inicia 
 4. Escolha quem entra primeiro. Em cada turno, selecione um golpe ou uma troca permitida. O motor resolve velocidade, acerto, dano, imunidade, status, habilidades e itens.
 5. Após um desmaio, escolha um substituto. A partida termina com vitória, derrota, desistência ou empate. O registro mostra os principais eventos em português, mantendo os nomes oficiais de golpes em inglês.
 
+### Interface da arena
+
+- Campo em perspectiva, com sprites de frente para o adversário e de costas para o jogador; falhas de imagem usam a ilustração alternativa.
+- HP com cores por faixa, status, nível e indicação do integrante em campo.
+- Golpes em grade com tipo, categoria e PP; trocas em uma faixa da equipe.
+- Histórico lateral no desktop e abaixo dos comandos no celular. A rolagem acompanha novos eventos enquanto você estiver no fim do histórico.
+- Temas claro e escuro, foco de teclado após ações e confirmação antes de desistir.
+- Transições de HP e entrada em campo respeitam a preferência de movimento reduzido. A interface apresenta o estado após cada turno, sem reproduzir uma sequência de animações de cada golpe.
+
 ### Regras desta versão
 
 - Batalhas individuais, Pokémon de Kanto e formato **Gen 9 National Dex AG**, ajustado para nível **50**. É possível usar golpes de gerações anteriores quando legais nesse formato.

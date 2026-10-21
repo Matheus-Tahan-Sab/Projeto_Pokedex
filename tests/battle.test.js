@@ -278,3 +278,18 @@ test("HTTP lifecycle, stale actions, deletion, invalid input and cross-origin co
   assert.equal((await send(`/battles/${id}`, null, "DELETE")).status, 200);
   assert.equal((await fetch(base + `/battles/${id}`)).status, 404);
 });
+
+test("challenger names survive the simulator and remain distinct from the opponent", async () => {
+  const battle = new BattleSession({ trainerId: 1, opponentId: 1, playerName: "  João Silva  " }, { seed });
+  try {
+    const state = await battle.ready();
+    assert.equal(state.names.p1, "João Silva (você)");
+    assert.equal(state.names.p2, "Ash (bot)");
+    const result = await battle.forfeit();
+    assert.equal(result.winner, state.names.p2);
+  } finally {
+    battle.destroy();
+  }
+  for (const playerName of [null, "a".repeat(25), "Nome\n|outro"])
+    assert.throws(() => new BattleSession({ trainerId: 1, opponentId: 2, playerName }), /nome|Nome/);
+});

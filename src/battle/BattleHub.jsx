@@ -30,6 +30,7 @@ function restoreTeam(catalog) {
 export default function BattleHub() {
   const [catalog, setCatalog] = useState(null);
   const [team, setTeam] = useState(Array(6).fill(null));
+  const [playerName, setPlayerName] = useState("");
   const [mode, setMode] = useState("trainer");
   const [trainerId, setTrainerId] = useState(1);
   const [opponentId, setOpponentId] = useState(2);
@@ -89,6 +90,7 @@ export default function BattleHub() {
     setError("");
     try {
       const payload = {
+        playerName: playerName.trim(),
         opponentId,
         difficulty,
         ...(mode === "trainer"
@@ -220,6 +222,18 @@ export default function BattleHub() {
           enfrente um treinador de Kanto.
         </p>
       </div>
+      <label className="challenger-name">
+        Seu nome de desafiante
+        <input
+          type="text"
+          value={playerName}
+          maxLength={24}
+          placeholder="Como quer ser chamado?"
+          aria-describedby="challenger-name-hint"
+          onChange={(event) => setPlayerName(event.target.value)}
+        />
+        <small id="challenger-name-hint">Opcional · até 24 caracteres. Em branco, usamos o nome do treinador ou “Seu time”.</small>
+      </label>
       <div className="battle-mode" role="group" aria-label="Origem da equipe">
         <button
           aria-pressed={mode === "trainer"}
