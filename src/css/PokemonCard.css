@@ -1,6 +1,6 @@
 .pokemon-card {
-  background: #191e26;
-  border: 1px solid #2e3540;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 16px 18px 0;
   overflow: hidden;
@@ -21,18 +21,18 @@
   font:
     11px ui-monospace,
     monospace;
-  color: #9aa5b5;
+  color: var(--muted);
   letter-spacing: 1px;
 }
 .favorite {
   font-size: 23px;
   line-height: 1;
   background: none;
-  color: #9aa5b5;
+  color: var(--muted);
   padding: 3px;
 }
 .favorite[aria-pressed="true"] {
-  color: #f3c967;
+  color: var(--gold);
 }
 .pokemon-select {
   display: block;
@@ -90,7 +90,7 @@
   margin: 0;
 }
 .stats.compact dt {
-  color: #9aa5b5;
+  color: var(--muted);
 }
 .stats.compact dd {
   font-size: 10px;
@@ -105,18 +105,18 @@
   padding: 12px 18px;
   justify-content: space-between;
   align-items: center;
-  background: #1c222c;
-  border-top: 1px solid #2e3540;
+  background: var(--surface-subtle);
+  border-top: 1px solid var(--border);
   font-size: 10px;
-  color: #aab5c5;
+  color: var(--muted);
 }
 .details-link span {
   font-size: 16px;
   color: var(--accent);
 }
 .details-link:hover {
-  background: #272f3b;
-  color: white;
+  background: var(--hover);
+  color: var(--text);
 }
 @media (max-width: 560px) {
   .pokemon-card {

@@ -9,6 +9,9 @@ export default function PokemonCard({
   favorite,
   onFavorite,
   onSelect,
+  comparing,
+  compareDisabled,
+  onCompare,
 }) {
   return (
     <article
@@ -27,6 +30,7 @@ export default function PokemonCard({
         </button>
       </div>
       <button
+        id={`pokemon-${pokemon.id}`}
         className="pokemon-select"
         onClick={() => onSelect(pokemon)}
         aria-label={`Ver detalhes de ${pokemon.name}`}
@@ -38,6 +42,13 @@ export default function PokemonCard({
         <TypeBadges types={pokemon.types} />
       </button>
       <Stats stats={pokemon.stats} compact />
+      <button
+        className="compare-button"
+        aria-label={`Comparar ${pokemon.name}`}
+        aria-pressed={comparing}
+        disabled={compareDisabled}
+        onClick={() => onCompare(pokemon.id)}
+      >{comparing ? "✓ Selecionado" : "Comparar"}</button>
       <button className="details-link" onClick={() => onSelect(pokemon)}>
         Explorar Pokémon <span aria-hidden="true">↗</span>
       </button>

@@ -1,3 +1,11 @@
+export const TYPE_LABELS = {
+  Normal: "Normal", Fire: "Fogo", Water: "Água", Grass: "Planta",
+  Electric: "Elétrico", Ice: "Gelo", Fighting: "Lutador", Poison: "Veneno",
+  Ground: "Terra", Flying: "Voador", Psychic: "Psíquico", Bug: "Inseto",
+  Rock: "Pedra", Ghost: "Fantasma", Dark: "Sombrio", Dragon: "Dragão", Steel: "Aço",
+};
+export const typeLabel = (name) => TYPE_LABELS[name] || name;
+
 export const STAT_LABELS = {
   hp: "HP",
   attack: "Ataque",

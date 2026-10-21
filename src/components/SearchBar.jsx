@@ -1,4 +1,4 @@
-import { STAT_LABELS } from "../utils/pokemon.js";
+import { STAT_LABELS, typeLabel } from "../utils/pokemon.js";
 import "../css/SearchBar.css";
 export default function SearchBar({
   query,
@@ -27,7 +27,7 @@ export default function SearchBar({
           <option value="">Todos os tipos</option>
           {types.map((item) => (
             <option key={item.id} value={item.name}>
-              {item.name}
+              {typeLabel(item.name)}
             </option>
           ))}
           <option value="unknown">Não informado</option>

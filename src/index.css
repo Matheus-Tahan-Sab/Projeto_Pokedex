@@ -1,3 +1,40 @@
+/* Pokébola is the default; Ultra Ball is an explicit saved preference. */
+:root {
+  color-scheme: light;
+  --bg: #f5f4f1;
+  --surface: #ffffff;
+  --surface-subtle: #f0efed;
+  --hover: #e7e5e2;
+  --border: #d3d1cd;
+  --muted: #62656b;
+  --text: #22252a;
+  --brand: #bb2035;
+  --brand-soft: #fbe5e8;
+  --brand-ink: #a91d30;
+  --gold: #85600a;
+  --button: #bd2337;
+  --button-hover: #a51b2d;
+  --button-text: #ffffff;
+  --focus: #167b9d;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111213;
+  --surface: #1d1f21;
+  --surface-subtle: #252729;
+  --hover: #323437;
+  --border: #414347;
+  --muted: #b0b1b6;
+  --text: #f4f3ee;
+  --brand: #f2c744;
+  --brand-soft: #383322;
+  --brand-ink: #f2ce62;
+  --gold: #f2ce62;
+  --button: #f2c744;
+  --button-hover: #ffda65;
+  --button-text: #202123;
+  --focus: #f2c744;
+}
 :root {
   font-family:
     Inter,
@@ -7,8 +44,8 @@
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
-  color: #eef1f5;
-  background: #101318;
+  color: var(--text);
+  background: var(--bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -42,7 +79,7 @@ button:focus-visible,
 a:focus-visible,
 input:focus-visible,
 select:focus-visible {
-  outline: 3px solid #7bd9eb;
+  outline: 3px solid var(--focus);
   outline-offset: 4px;
 }
 button {
@@ -85,17 +122,17 @@ img {
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 2px;
-  color: #a1a8b4;
+  color: var(--muted);
 }
 .primary {
-  background: #e44445;
-  color: #fff;
+  background: var(--button);
+  color: var(--button-text);
   border-radius: 8px;
   padding: 13px 19px;
   font-weight: 650;
 }
 .primary:hover {
-  background: #f45a5c;
+  background: var(--button-hover);
 }
 .pokeball {
   display: inline-block;
@@ -118,7 +155,7 @@ img {
   width: 7px;
   height: 7px;
   border: 2px solid currentColor;
-  background: #15191f;
+  background: var(--surface-subtle);
   border-radius: 50%;
   top: 50%;
   left: 50%;

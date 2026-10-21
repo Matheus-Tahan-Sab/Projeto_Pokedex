@@ -31,6 +31,14 @@ npm run preview # prévia do build em http://127.0.0.1:4173
 - Consulta dos 12 treinadores, insígnias e equipes; detalhes ao clicar nos integrantes.
 - Layout responsivo, navegação por teclado e respeito à preferência de movimento reduzido.
 
+## Melhorias de navegação
+
+- Tipos exibidos em português, preservando os identificadores dos dados originais.
+- Comparação de até dois Pokémon com atributos e total lado a lado; os maiores valores recebem destaque e indicação textual acessível.
+- Catálogo em grupos de 24 com “Carregar mais”; pesquisa, filtros e ordenação continuam abrangendo todos os 151 registros.
+- Temas Pokébola (claro) e Ultra Ball (escuro), com preferência salva no navegador.
+- Controles com foco visível, alvos de toque ampliados e atributos mais legíveis em telas pequenas.
+
 ## Dados e imagens
 
 A fonte principal é **`src/data/pokedex-data.json`**, disponibilizada pelo [professor](https://github.com/joaopauloaramuni/desenvolvimento-e-integracao-de-aplicacoes-web/blob/main/ATIVIDADES/ATIVIDADE%2003%20-%20JSON/data/pokedex-data.json). O conteúdo recebido no repositório foi preservado, corrigindo apenas o nome do arquivo (`poedex-data.json` → `pokedex-data.json`). Não atualizamos os atributos para gerações mais recentes: a atividade usa os dados fornecidos. Mew tem tipos vazios na fonte e aparece como “Não informado”. Pokémon repetidos nas equipes, como as de Koga e Lance, são mantidos.
