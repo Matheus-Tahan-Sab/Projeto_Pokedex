@@ -5,6 +5,7 @@ import PokemonList from "./components/PokemonList.jsx";
 import PokemonDetails from "./components/PokemonDetails.jsx";
 import SearchBar from "./components/SearchBar.jsx";
 import Trainers from "./components/Trainers.jsx";
+import BattleHub from "./battle/BattleHub.jsx";
 import { selectPokemon } from "./utils/pokemon.js";
 import "./css/App.css";
 
@@ -26,7 +27,9 @@ function readFavorites() {
 }
 function readTheme() {
   try {
-    return localStorage.getItem("pokedex:theme:v1") === "dark" ? "dark" : "light";
+    return localStorage.getItem("pokedex:theme:v1") === "dark"
+      ? "dark"
+      : "light";
   } catch {
     return "light";
   }
@@ -36,9 +39,9 @@ export default function App() {
   const [theme, setTheme] = useState(readTheme);
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
-    document.querySelector('meta[name="theme-color"]')?.setAttribute(
-      "content", theme === "dark" ? "#171819" : "#ce293d",
-    );
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", theme === "dark" ? "#171819" : "#ce293d");
     try {
       localStorage.setItem("pokedex:theme:v1", theme);
     } catch {
@@ -72,9 +75,13 @@ export default function App() {
     ),
   );
   function toggleCompare(id) {
-    setComparison((current) => current.includes(id)
-      ? current.filter((item) => item !== id)
-      : current.length < 2 ? [...current, id] : current);
+    setComparison((current) =>
+      current.includes(id)
+        ? current.filter((item) => item !== id)
+        : current.length < 2
+          ? [...current, id]
+          : current,
+    );
   }
   function toggleFavorite(id) {
     setFavorites((current) =>
@@ -124,15 +131,30 @@ export default function App() {
           >
             Treinadores
           </button>
+          <button
+            className={page === "battle" ? "active" : ""}
+            aria-current={page === "battle" ? "page" : undefined}
+            onClick={() => setPage("battle")}
+          >
+            Batalhas
+          </button>
         </nav>
         <div className="header-actions">
-          <span className="edition"><span /> EDIÇÃO KANTO</span>
+          <span className="edition">
+            <span /> EDIÇÃO KANTO
+          </span>
           <button
             className="theme-toggle"
             aria-label="Tema escuro — Ultra Ball"
             aria-pressed={theme === "dark"}
-            onClick={() => setTheme((current) => current === "light" ? "dark" : "light")}
-            title={theme === "light" ? "Ativar tema Ultra Ball" : "Ativar tema Pokébola"}
+            onClick={() =>
+              setTheme((current) => (current === "light" ? "dark" : "light"))
+            }
+            title={
+              theme === "light"
+                ? "Ativar tema Ultra Ball"
+                : "Ativar tema Pokébola"
+            }
           >
             <span className="theme-ball" aria-hidden="true" />
             <span>{theme === "light" ? "Pokébola" : "Ultra Ball"}</span>
@@ -190,7 +212,9 @@ export default function App() {
               <h2 id="catalog-title">
                 {page === "pokemon"
                   ? "Encontre seu próximo favorito"
-                  : "Conheça os treinadores"}
+                  : page === "battle"
+                    ? "Arena de batalhas"
+                    : "Conheça os treinadores"}
               </h2>
             </div>
             {page === "pokemon" && (
@@ -211,7 +235,9 @@ export default function App() {
           {page === "pokemon" ? (
             <>
               <PokemonComparison
-                pokemon={comparison.map((id) => data.pokemon.find((entry) => entry.id === id))}
+                pokemon={comparison.map((id) =>
+                  data.pokemon.find((entry) => entry.id === id),
+                )}
                 onRemove={toggleCompare}
                 onClear={() => setComparison([])}
               />
@@ -225,9 +251,14 @@ export default function App() {
                 onSort={setSort}
               />
               {comparison.length === 2 && (
-                <button className="text-button" onClick={() => {
-                  document.getElementById("comparison-title")?.focus();
-                }}>Ver comparação selecionada ↑</button>
+                <button
+                  className="text-button"
+                  onClick={() => {
+                    document.getElementById("comparison-title")?.focus();
+                  }}
+                >
+                  Ver comparação selecionada ↑
+                </button>
               )}
               <div className="results-bar">
                 <div className="view-switch">
@@ -251,7 +282,13 @@ export default function App() {
                 </p>
               </div>
               <PokemonList
-                key={JSON.stringify([query, type, sort, favoritesOnly, favoritesOnly ? favorites : null])}
+                key={JSON.stringify([
+                  query,
+                  type,
+                  sort,
+                  favoritesOnly,
+                  favoritesOnly ? favorites : null,
+                ])}
                 comparison={comparison}
                 onCompare={toggleCompare}
                 pokemon={visible}
@@ -261,6 +298,8 @@ export default function App() {
                 onReset={reset}
               />
             </>
+          ) : page === "battle" ? (
+            <BattleHub />
           ) : (
             <>
               <p className="section-description">
